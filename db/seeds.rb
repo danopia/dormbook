@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+Building.create :name => 'Calhoun', :number => 20
+Building.create :name => 'Kelly', :number => 19
+Building.create :name => 'Millennium', :number => 31
+Building.create :name => 'Myers', :number => 21
+Building.create :name => 'Race', :number => 29
+Building.create :name => 'Towers', :number => 22
+Building.create :name => 'Van R', :number => 17
+Building.create :name => 'Millennium (Honors)', :number => 34
+
