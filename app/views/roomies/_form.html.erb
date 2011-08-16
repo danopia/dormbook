@@ -1,0 +1,33 @@
+<%= form_for(@roomy) do |f| %>
+  <% if @roomy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@roomy.errors.count, "error") %> prohibited this roomy from being saved:</h2>
+
+      <ul>
+      <% @roomy.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :building_id %><br />
+    <%= f.text_field :building_id %>
+  </div>
+  <div class="field">
+    <%= f.label :room %><br />
+    <%= f.text_field :room %>
+  </div>
+  <div class="field">
+    <%= f.label :index %><br />
+    <%= f.text_field :index %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

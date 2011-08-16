@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  building_id: 
+  room: MyString
+  index: 
+
+two:
+  name: MyString
+  building_id: 
+  room: MyString
+  index: 

@@ -1,0 +1,29 @@
+<h1>Listing roomies</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Building</th>
+    <th>Room</th>
+    <th>Index</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @roomies.each do |roomy| %>
+  <tr>
+    <td><%= roomy.name %></td>
+    <td><%= roomy.building_id %></td>
+    <td><%= roomy.room %></td>
+    <td><%= roomy.index %></td>
+    <td><%= link_to 'Show', roomy %></td>
+    <td><%= link_to 'Edit', edit_roomy_path(roomy) %></td>
+    <td><%= link_to 'Destroy', roomy, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Roomie', new_roomy_path %>
