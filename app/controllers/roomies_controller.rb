@@ -2,7 +2,7 @@ class RoomiesController < ApplicationController
   # GET /roomies
   # GET /roomies.xml
   def index
-    @roomies = Roomie.all
+    #@roomies = Roomie.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class RoomiesController < ApplicationController
   # GET /roomies/1
   # GET /roomies/1.xml
   def show
-    @roomy = Roomie.find(params[:id])
+    #@roomy = Roomie.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,29 +34,45 @@ class RoomiesController < ApplicationController
 
   # GET /roomies/1/edit
   def edit
-    @roomy = Roomie.find(params[:id])
+    #@roomy = Roomie.find(params[:id])
   end
 
   # POST /roomies
   # POST /roomies.xml
   def create
-    @roomy = Roomie.new(params[:roomy])
+	raw = params[:raw_string].split('-')
 
-    respond_to do |format|
-      if @roomy.save
-        format.html { redirect_to(@roomy, :notice => 'Roomie was successfully created.') }
-        format.xml  { render :xml => @roomy, :status => :created, :location => @roomy }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @roomy.errors, :status => :unprocessable_entity }
-      end
-    end
+    @roomy = Roomie.new(params[:roomie])
+
+@roomy.building = Building.find_by_number(raw[0][1..-1].to_i)
+@roomy.room = raw[1]
+@roomy.index = raw[2].to_i
+
+me=Roomie.first(:conditions => {:building_id=>@roomy.building.id,
+:room => raw[1],
+:index => raw[2].to_i})
+
+others=Roomie.all(:conditions => {:building_id=>@roomy.building.id,
+:room => raw[1]})
+others.delete me
+
+if me && others.any?
+	render :text => "Known roommates so far: #{others.map(&:name).join(', ')}. You are in #{@roomy.building.name}"
+elsif me
+	render :text => "Still no roommates yet, check back again later. You are in #{@roomy.building.name}"
+elsif others.any?
+	@roomy.save
+	render :text => "Known roommates so far: #{others.map(&:name).join(', ')}. You are in #{@roomy.building.name}"
+else
+	@roomy.save
+	render :text => "No roommates yet, check back later. You are in #{@roomy.building.name}"
+end
   end
 
   # PUT /roomies/1
   # PUT /roomies/1.xml
   def update
-    @roomy = Roomie.find(params[:id])
+    #@roomy = Roomie.find(params[:id])
 
     respond_to do |format|
       if @roomy.update_attributes(params[:roomy])
@@ -72,7 +88,7 @@ class RoomiesController < ApplicationController
   # DELETE /roomies/1
   # DELETE /roomies/1.xml
   def destroy
-    @roomy = Roomie.find(params[:id])
+    #@roomy = Roomie.find(params[:id])
     @roomy.destroy
 
     respond_to do |format|
