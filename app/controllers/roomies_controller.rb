@@ -56,16 +56,19 @@ others=Roomie.all(:conditions => {:building_id=>@roomy.building.id,
 :room => raw[1]})
 others.delete me
 
+bldg= = Roomie.all(:conditions => {:building_id => @roomy.building.id}).size
+suffix = "You are in #{@roomy.building.name}, along with #{bldg} others so far."
+
 if me && others.any?
-	render :text => "Known roommates so far: #{others.map(&:name).join(', ')}. You are in #{@roomy.building.name}"
+	render :text => "Known roommates so far: #{others.map(&:name).join(', ')}. #{suffix}"
 elsif me
-	render :text => "Still no roommates yet, check back again later. You are in #{@roomy.building.name}"
+	render :text => "Still no roommates yet, check back again later. #{suffix}"
 elsif others.any?
 	@roomy.save
-	render :text => "Known roommates so far: #{others.map(&:name).join(', ')}. You are in #{@roomy.building.name}"
+	render :text => "Known roommates so far: #{others.map(&:name).join(', ')}. #{suffix}"
 else
 	@roomy.save
-	render :text => "No roommates yet, check back later. You are in #{@roomy.building.name}"
+	render :text => "No roommates yet, check back later. #{suffix}"
 end
   end
 
