@@ -56,7 +56,7 @@ others=Roomie.all(:conditions => {:building_id=>@roomy.building.id,
 :room => raw[1]})
 others.delete me
 
-bldg= = Roomie.all(:conditions => {:building_id => @roomy.building.id}).size
+bldg = Roomie.all(:conditions => {:building_id => @roomy.building.id}).size
 suffix = "You are in #{@roomy.building.name}, along with #{bldg} others so far."
 
 if me && others.any?
