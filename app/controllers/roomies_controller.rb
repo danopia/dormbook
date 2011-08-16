@@ -56,8 +56,8 @@ others=Roomie.all(:conditions => {:building_id=>@roomy.building.id,
 :room => raw[1]})
 others.delete me
 
-bldg = Roomie.all(:conditions => {:building_id => @roomy.building.id}).size
-suffix = "You are in #{@roomy.building.name}, along with #{bldg} others so far."
+bldg = Roomie.all(:conditions => {:building_id => @roomy.building.id})
+suffix = "<br/>You are in #{@roomy.building.name}, along with #{bldg.size} others so far. Here's a few: <br/>- #{bldg.last(5).map(&:name).join('<br/>- ')}"
 
 if me && others.any?
 	render :text => "Known roommates so far: #{others.map(&:name).join(', ')}. #{suffix}"
