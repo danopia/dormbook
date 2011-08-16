@@ -54,10 +54,16 @@ me=Roomie.first(:conditions => {:building_id=>@roomy.building.id,
 
 others=Roomie.all(:conditions => {:building_id=>@roomy.building.id,
 :room => raw[1]})
-others.delete me
+others == others.select {|i| i.id != me.id } if me
 
 bldg = Roomie.all(:conditions => {:building_id => @roomy.building.id})
-suffix = "<br/>You are in #{@roomy.building.name}, along with #{bldg.size} others so far. Here's a few: <br/>- #{bldg.last(5).map(&:name).join('<br/>- ')}<br/><br/><a href='/buildings'>(view all buildings)</a>"
+
+room = @roomy.room.match(/[0-9]{3,4}/).to_s
+floor = room[0..-3].to_i
+
+floors = bldg.select{|o| o.room.match(/[0-9]{3,4}/).to_s[0..-3].to_i == floor }
+
+suffix = "<br/>You are in #{@roomy.building.name}, along with #{bldg.size} others so far. Here's a few:<br/>- #{bldg.last(5).map(&:name).join('<br/>- ')}<br/><br/><a href='/buildings'>(view all buildings)</a><br><br>You are on floor #{floor}, along with #{floors.size} others so far. Here's all that I know on your floor:<br/>- #{floors.map{|x|"#{x.name} (in #{x.room})"}.join('<br/>- ')}"
 
 if me && others.any?
 	render :text => "Known roommates so far: #{others.map(&:name).join(', ')}. #{suffix}"
