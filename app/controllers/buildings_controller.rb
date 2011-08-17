@@ -17,7 +17,7 @@ class BuildingsController < ApplicationController
     
     @building = Building.find(params[:id])
     @roomies = @building.roomies
-    @by_floor = Set.new(@roomies).classify(&:floor).sort
+    @by_floor = Set.new(@roomies).classify(&:floor).sort.reverse
 
     respond_to do |format|
       format.html # show.html.erb
