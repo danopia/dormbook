@@ -27,7 +27,7 @@
 
 <% if @others.any? -%>
   <div style="margin: 2em; padding: 0 1em; border: 2px solid #633; background-color: #fcc;">
-    <p><strong>Here's your <%=pluralize @others.size, 'roommates' %></strong> so far!</p>
+    <p><strong>Here's your <%=pluralize @others.size, 'roommate' %></strong> so far!</p>
     <ul>
   <% @others.each do |i| -%>
       <li><%= i.name %></li>
@@ -37,14 +37,14 @@
 <% end -%>
 
 <div style="margin: 2em; padding: 0 1em; border: 2px solid #333; background-color: #ccc;">
-  <p>You are in <strong><%= @roomy.building.name %></strong>, along with <%=pluralize @bldg.size, 'others' %> so far. Here's a few:</p>
+  <p>You are in <strong><%= @roomy.building.name %></strong>, along with <%=pluralize @bldg.size, 'other' %> so far. Here's a few:</p>
   <ul>
 <% @bldg.last(5).each do |i| -%>
     <li><%= i.name %> (in <%= i.room %>)</li>
 <% end -%>
   </ul>
   
-  <p>You are on <strong>floor <%= @roomy.floor %></strong>, along with <%=pluralize @floors.size, 'others' %> so far. Here's all that I know on your floor:</p>
+  <p>You are on <strong>floor <%= @roomy.floor %></strong>, along with <%=pluralize @floors.size, 'other' %> so far. Here's all that I know on your floor:</p>
   <ul>
 <% @floors.each do |i| -%>
     <li><%= i.name %> (in <%= i.room %>)</li>
