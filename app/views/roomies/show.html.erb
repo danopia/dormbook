@@ -7,7 +7,7 @@
 
 <p>
   <b>Building:</b>
-  <%= @roomy.building.name %>
+  <%=link_to @roomy.building.name, @roomy.building %>
 </p>
 
 <p>
@@ -41,7 +41,7 @@
 <% end -%>
 
 <div style="margin: 2em; padding: 0 1em; border: 2px solid #333; background-color: #ccc;">
-  <p>You are in <strong><%= @roomy.building.name %></strong>, along with <%=pluralize @bldg.size, 'other' %> so far. Here's a few:</p>
+  <p>You are in <strong><%=link_to @roomy.building.name, @roomy.building %></strong>, along with <%=pluralize @bldg.size, 'other' %> so far. Here's a few:</p>
   <ul>
 <% @bldg.last(5).each do |i| -%>
     <li><%= i.name %> (in <%= i.room %>)</li>

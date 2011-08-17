@@ -1,15 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @building.name %>
-</p>
+<h1><%= @building.name %></h1>
 
-<p>
-  <b>Number:</b>
-  <%= @building.number %>
-</p>
+<p>Known assignments so far (by floor):</p>
+<ul>
+<% @by_floor.each do |(floor, i)| -%>
+  <li>
+    Floor <%= floor %>
+    <ul>
+<% Set.new(i).classify(&:room).sort.each do |(room, j)| -%>
+      <li><%= room %>: <%= j.map(&:name).join(', ') %></li>
+<% end -%>
+    </ul>
+  </li>
+<% end -%>
+</ul>
 
-
-<%= link_to 'Edit', edit_building_path(@building) %> |
 <%= link_to 'Back', buildings_path %>

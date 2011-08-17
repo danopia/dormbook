@@ -3,7 +3,7 @@
 <table>
 <% @buildings.each do |building| %>
   <tr>
-    <td><%= building.name %></td>
+    <td><%=link_to building.name, building %></td>
     <td><%=pluralize building.roomies.all.size, 'people' %> so far</td>
   </tr>
 <% end %>

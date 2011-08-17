@@ -13,7 +13,11 @@ class BuildingsController < ApplicationController
   # GET /buildings/1
   # GET /buildings/1.xml
   def show
-    #@building = Building.find(params[:id])
+    require 'set'
+    
+    @building = Building.find(params[:id])
+    @roomies = @building.roomies
+    @by_floor = Set.new(@roomies).classify(&:floor).sort
 
     respond_to do |format|
       format.html # show.html.erb
