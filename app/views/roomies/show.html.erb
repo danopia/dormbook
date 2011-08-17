@@ -7,7 +7,12 @@
 
 <p>
   <b>Building:</b>
-  <%= @roomy.building_id %>
+  <%= @roomy.building.name %>
+</p>
+
+<p>
+  <b>Floor:</b>
+  <%= @roomy.floor %>
 </p>
 
 <p>
@@ -16,10 +21,39 @@
 </p>
 
 <p>
-  <b>Index:</b>
+  <b>Priority:</b>
   <%= @roomy.index %>
 </p>
 
+<% if @others.any? -%>
+  <div style="margin: 2em; padding: 0 1em; border: 2px solid #633; background-color: #fcc;">
+    <p><strong>Here's your <%=pluralize @others.size, 'roommates' %></strong> so far!</p>
+    <ul>
+  <% @others.each do |i| -%>
+      <li><%= i.name %></li>
+  <% end -%>
+    </ul>
+  </div>
+<% end -%>
 
-<%= link_to 'Edit', edit_roomy_path(@roomy) %> |
-<%= link_to 'Back', roomies_path %>
+<div style="margin: 2em; padding: 0 1em; border: 2px solid #333; background-color: #ccc;">
+  <p>You are in <strong><%= @roomy.building.name %></strong>, along with <%=pluralize @bldg.size, 'others' %> so far. Here's a few:</p>
+  <ul>
+<% @bldg.last(5).each do |i| -%>
+    <li><%= i.name %> (in <%= i.room %>)</li>
+<% end -%>
+  </ul>
+  
+  <p>You are on <strong>floor <%= @roomy.floor %></strong>, along with <%=pluralize @floors.size, 'others' %> so far. Here's all that I know on your floor:</p>
+  <ul>
+<% @floors.each do |i| -%>
+    <li><%= i.name %> (in <%= i.room %>)</li>
+<% end -%>
+  </ul>
+</div>
+
+<p>
+  <%= link_to 'View all buildings', buildings_path %>
+</p>
+
+

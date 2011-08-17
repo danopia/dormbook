@@ -13,7 +13,17 @@ class RoomiesController < ApplicationController
   # GET /roomies/1
   # GET /roomies/1.xml
   def show
-    #@roomy = Roomie.find(params[:id])
+    @roomy = Roomie.find params[:id]
+    
+    @others = Roomie.all(:conditions => {
+      :building_id => @roomy.building.id,
+      :room => @roomy.room})
+    @others = @others.select {|i| i.id != @roomy.id }
+
+    @bldg = Roomie.all(:conditions => {:building_id => @roomy.building.id})
+    @bldg = @bldg.select {|i| i.id != @roomy.id }
+
+    @floors = @bldg.select{|o| o.floor == @roomy.floor }
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,42 +50,28 @@ class RoomiesController < ApplicationController
   # POST /roomies
   # POST /roomies.xml
   def create
-	raw = params[:raw_string].split('-')
-
     @roomy = Roomie.new(params[:roomie])
+    @roomy.parse_str params[:raw_string]
 
-@roomy.building = Building.find_by_number(raw[0][1..-1].to_i)
-@roomy.room = raw[1]
-@roomy.index = raw[2].to_i
+    me = Roomie.first(:conditions => {
+      :building_id => @roomy.building.id,
+      :room => @roomy.room,
+      :index => @roomy.index})
 
-me=Roomie.first(:conditions => {:building_id=>@roomy.building.id,
-:room => raw[1],
-:index => raw[2].to_i})
-
-others=Roomie.all(:conditions => {:building_id=>@roomy.building.id,
-:room => raw[1]})
-others == others.select {|i| i.id != me.id } if me
-
-bldg = Roomie.all(:conditions => {:building_id => @roomy.building.id})
-
-room = @roomy.room.match(/[0-9]{3,4}/).to_s
-floor = room[0..-3].to_i
-
-floors = bldg.select{|o| o.room.match(/[0-9]{3,4}/).to_s[0..-3].to_i == floor }
-
-suffix = "<br/>You are in #{@roomy.building.name}, along with #{bldg.size} others so far. Here's a few:<br/>- #{bldg.last(5).map(&:name).join('<br/>- ')}<br/><br/><a href='/buildings'>(view all buildings)</a><br><br>You are on floor #{floor}, along with #{floors.size} others so far. Here's all that I know on your floor:<br/>- #{floors.map{|x|"#{x.name} (in #{x.room})"}.join('<br/>- ')}"
-
-if me && others.any?
-	render :text => "Known roommates so far: #{others.map(&:name).join(', ')}. #{suffix}"
-elsif me
-	render :text => "Still no roommates yet, check back again later. #{suffix}"
-elsif others.any?
-	@roomy.save
-	render :text => "Known roommates so far: #{others.map(&:name).join(', ')}. #{suffix}"
-else
-	@roomy.save
-	render :text => "No roommates yet, check back later. #{suffix}"
-end
+    respond_to do |format|
+      if me
+        format.html { redirect_to(me) }
+        format.xml  { render :xml => me, :status => :updated, :location => me }
+      else
+        if @roomy.save
+          format.html { redirect_to(@roomy, :notice => 'Room assignment was successfully added.') }
+          format.xml  { render :xml => @roomy, :status => :created, :location => @roomy }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @roomy.errors, :status => :unprocessable_entity }
+        end
+      end
+    end
   end
 
   # PUT /roomies/1
