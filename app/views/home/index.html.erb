@@ -1,0 +1,13 @@
+<h2>Want to find your floormates?</h2>
+<p>Put your name and <a href="http://myhousing.drexel.edu/">MyHousing</a> reservation string below!</p>
+
+<%= render 'roomies/form' %>
+
+<h2>Some recent listings</h2>
+<ul>
+<% @recent.each do |i| -%>
+  <li><%= i.name %> (in <%=link_to i.building.name, i.building %>, room <%= i.room %>)</li>
+<% end -%>
+</ul>
+
+

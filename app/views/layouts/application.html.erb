@@ -1,26 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Roommates</title>
-  <%= stylesheet_link_tag 'scaffold' %>
-  <%#= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-25180822-1']);
-    _gaq.push(['_trackPageview']);
+  <head>
+    <title>Drexel Dormbook</title>
+    
+    <%= stylesheet_link_tag 'application' %>
+    <%#= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-25180822-1']);
+      _gaq.push(['_trackPageview']);
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-</head>
-<body>
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="page">
+      <div id="sidebar">
+        <ul id="sidebar-items">
+          <li>
+            <h3>List <%=link_to 'your room', new_roomy_path %></h3>
+          </li>
+          <li>
+            <h3>View <%=link_to 'buildings', buildings_path %></h3>
+            <ul class="links">
+<% Building.all.sort_by(&:name).each do |building| %>
+              <li><%=link_to building.name, building %></li>
+<% end %>
+            </ul>
+          </li>
+        </ul>
+      </div>
 
+      <div id="content">
+        <div id="header">
+          <h1>Drexel Dormbook</h1>
+          <h2>Explore your floor before you even move in</h2>
+        </div>
+
+        <div id="getting-started">
 <%= yield %>
+        </div>
+      </div>
 
-</body>
+      <div id="footer">&nbsp;</div>
+    </div>
+  </body>
 </html>

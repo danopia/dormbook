@@ -12,14 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name, 'Full name' %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= label_tag :raw_string, 'Reservation ID' %><br />
+    <%= label_tag :raw_string, 'Reservation ID (R##-####-#)' %><br />
     <%= text_field_tag :raw_string %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Find floormates!' %>
   </div>
 <% end %>
