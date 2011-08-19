@@ -8,9 +8,11 @@ class Roomie < ActiveRecord::Base
   def parse_str raw
 	  raw = raw.strip.split('-')
 	  
-    self.building = Building.find_by_number(raw[0][1..-1].to_i)
+	  code = raw[0][1..-1].to_i
+	  code = 1 if raw[0] == 'RACE'
+    self.building = Building.find_by_number(code) if code > 0
     self.room = raw[1]
-    self.index = raw[2].to_i
+    self.index = raw[2].to_i if raw[2] && raw[2].size == 1
   end
   
   def floor; room.match(/[0-9]{3,4}/).to_s[0..-3].to_i rescue 0; end
