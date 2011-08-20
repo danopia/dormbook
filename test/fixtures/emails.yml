@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  from: MyString
+  message: MyText
+  signature: MyString
+  subject: MyString
+  roomie: 1
+  processed: false
+
+two:
+  from: MyString
+  message: MyText
+  signature: MyString
+  subject: MyString
+  roomie: 1
+  processed: false

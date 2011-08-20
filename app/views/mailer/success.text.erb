@@ -1,0 +1,32 @@
+<%= @roomy.name %>
+<%= '=' * @roomy.name.size %>
+
+For an up-to-date version of this information, please visit this URL:
+<%= @roomie_url %>
+
+<% if @others.any? -%>
+Here's your <%=pluralize @others.size, 'roommate' %> so far!:
+<% @others.each do |i| -%>
+* <%= i.name %>
+<% end -%>
+<% else -%>
+I don't know about your roomies yet. Tell people to submit their IDs so there's
+a higher chance of you finding a roomie. Check back later!
+<% end -%>
+
+You are in room <%= @roomy.room %> in <%= @roomy.building.name %>, along with <%=pluralize @bldg.size, 'other' %> so far. Here's a few:
+<% @bldg.last(5).each do |i| -%>
+* <%= i.name %> (in <%= i.room %>)
+<% end -%>
+
+To explore the whole building, please visit this URL:
+<%= @bldg_url %>
+
+You are on floor <%= @roomy.floor %>, along with <%=pluralize @floors.size, 'other' %> so far. Here's all that I know on your floor:
+<% @floors.each do |i| -%>
+* <%= i.name %> (in <%= i.room %>)
+<% end -%>
+
+Again, for an up-to-date version of this information, please visit this URL:
+<%= @roomie_url %>
+

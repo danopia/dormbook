@@ -1,4 +1,6 @@
 Roommates::Application.routes.draw do
+  resources :emails
+
   resources :roomies
   resources :buildings
 

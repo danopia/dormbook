@@ -1,10 +1,13 @@
 class Roomie < ActiveRecord::Base
 	belongs_to :building
+  has_one :email
 
   validates_presence_of :name, :room, :index
   validates_presence_of :building_id, :message => 'is not known'
   validates_associated :building
   validates_uniqueness_of :name
+  validates_uniqueness_of :index, :scope => [:building_id, :room]
+  validates_numericality_of :index, :greater_than => 0
 
   def parse_str raw
 	  raw = raw.strip.split('-')
@@ -20,7 +23,15 @@ class Roomie < ActiveRecord::Base
   def raw_string; @raw_string; end
   def raw_string= raw; parse_str raw; @raw_string = raw; end
   
-  def floor; room.match(/[0-9]{3,4}/).to_s[0..-3].to_i rescue 0; end
-  def room_i; room.match(/[0-9]{3,4}/).to_s.to_i rescue 0; end
+  def floor; room_s[0..-3].to_i rescue 0; end
+  def room_i; room_s.to_i rescue 0; end
+  def room_s; @_room ||= room.match(/[0-9]{3,4}/).to_s rescue ''; end
+  
+  def find
+    Roomie.first(:conditions => {
+      :building_id => self.building_id,
+      :room => self.room,
+      :index => self.index})
+  end
 end
 
