@@ -8,7 +8,7 @@
   <li>
     Floor <%= floor %>
     <ul>
-<% Set.new(i).classify(&:room_i).sort.each do |(room, j)| -%>
+<% Set.new(i).classify(&:room).sort.each do |(room, j)| -%>
       <li><%= j.first.room %>: <%= j.map(&:name).join(', ') %></li>
 <% end -%>
     </ul>
