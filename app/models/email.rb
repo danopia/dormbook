@@ -28,6 +28,7 @@ class Email < ActiveRecord::Base
       other.save
     end
     
+    update_attributes :from => e.message.match(/^From:.*<(.+)>.*$/)[1] if e.message.match(/^From:.*<(.+)>.*$/)
     update_attributes :processed => true, :roomie_id => me.id
     
     Mailer.success(self).deliver
