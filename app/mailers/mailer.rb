@@ -24,7 +24,7 @@ class Mailer < ActionMailer::Base
 
     @floors = @bldg.select{|o| o.floor == @roomy.floor }
 
-    mail :to => @email.from, :subject => 'Thank you for contributing to Dormbook!'
+    mail :to => @email.from, :subject => "Thank you for contributing to Dormbook, #{@roomy.name}!"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
