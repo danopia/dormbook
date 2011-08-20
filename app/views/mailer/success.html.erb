@@ -3,14 +3,12 @@
 <p><strong>For an up-to-date version of this information, please visit <%=link_to 'your private page', @roomie_url %></strong></p>
 
 <% if @others.any? -%>
-  <div style="margin: 2em; padding: 0 1em; border: 2px solid #363; background-color: #cfc;">
-    <p><strong>Here's your <%=pluralize @others.size, 'roommate' %></strong> so far!</p>
-    <ul>
-  <% @others.each do |i| -%>
-      <li><%= i.name %></li>
-  <% end -%>
-    </ul>
-  </div>
+  <p><strong>Here's your <%=pluralize @others.size, 'roommate' %></strong> so far!</p>
+  <ul>
+<% @others.each do |i| -%>
+    <li><%= i.name %></li>
+<% end -%>
+  </ul>
 <% else -%>
   <div style="margin: 2em; padding: 0 1em; border: 2px solid #633; background-color: #fcc;">
     <p><strong>I don't know about your roomies yet.</strong> Tell people to submit their IDs so there's a higher chance of you finding a roomie. Check back later!</p>
