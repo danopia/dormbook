@@ -19,7 +19,7 @@ class Email < ActiveRecord::Base
     
     me.save
     
-    message.scan(/^ (.+), M([rs]) (.+) (R[0-9]{2}-[^\-]+-[0-9]) ([^@ ]+@drexel\.edu)/).map do |caps|
+    message.scan(/^ ?(.+), M([rs]) (.+) (R[0-9]{2}-[^\-]+-[0-9]) ([^@ ]+@drexel\.edu)/).map do |caps|
       other = Roomie.new
       other.raw_string = caps[3]
       other = other.find || other
