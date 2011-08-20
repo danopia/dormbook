@@ -36,6 +36,6 @@ class Mailer < ActionMailer::Base
     @email = email
     @url = 'http://dormbook.danopia.net'
 
-    mail :to => "to@example.org", :subject => 'There was a problem reading your rooming email'
+    mail :to => @email.from, :subject => 'There was a problem reading your rooming email'
   end
 end
