@@ -51,10 +51,9 @@ class RoomiesController < ApplicationController
   # POST /roomies.xml
   def create
     @roomy = Roomie.new(params[:roomie])
-    @roomy.parse_str params[:raw_string]
 
     me = Roomie.first(:conditions => {
-      :building_id => @roomy.building.id,
+      :building_id => @roomy.building_id,
       :room => @roomy.room,
       :index => @roomy.index})
 

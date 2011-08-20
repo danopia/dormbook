@@ -16,8 +16,8 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= label_tag :raw_string, 'Reservation ID (R##-####-#)' %><br />
-    <%= text_field_tag :raw_string %>
+    <%= f.label :raw_string, 'Reservation ID (R##-####-#)' %><br />
+    <%= f.text_field :raw_string %>
   </div>
   <div class="actions">
     <%= f.submit 'Find floormates!' %>
