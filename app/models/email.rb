@@ -6,6 +6,7 @@ class Email < ActiveRecord::Base
   
   def process!
     return if processed
+    update_attributes :from => message.match(/^From:.*<(.+)>.*$/)[1] if message.match(/^From:.*<(.+)>.*$/)
     
     me = Roomie.new
     me.raw_string = message.match(/R[0-9ACE]{2,3}-[^\-]{3,15}-[0-9]/)[0]
@@ -28,7 +29,6 @@ class Email < ActiveRecord::Base
       other.save
     end
     
-    update_attributes :from => message.match(/^From:.*<(.+)>.*$/)[1] if message.match(/^From:.*<(.+)>.*$/)
     update_attributes :processed => true, :roomie_id => me.id
     
     Mailer.success(self).deliver
