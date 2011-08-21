@@ -14,7 +14,7 @@ I don't know about your roomies yet. Tell people to submit their IDs so there's
 a higher chance of you finding a roomie. Check back later!
 <% end -%>
 
-You are in room <%= @roomy.room %> in <%= @roomy.building.name %>, along with <%=pluralize @bldg.size, 'other' %> so far. Here's a few:
+You are in room <%= @roomy.room %> in <%= @roomy.building.name %>. Here's a few of the <%=pluralize @bldg.size, 'other' %> that I know of in <%= @roomy.building.name %>:
 <% @bldg.last(5).each do |i| -%>
 * <%= i.name %> (in <%= i.room %>)
 <% end -%>
