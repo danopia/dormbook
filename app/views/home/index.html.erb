@@ -6,7 +6,7 @@
 <h2>Some recent listings</h2>
 <ul>
 <% @recent.each do |i| -%>
-  <li><%= i.name %> (in <%=link_to i.building.name, i.building %>, room <%= i.room %>)</li>
+  <li><span style="float: right; color: gray;"><%=time_ago_in_words i.created_at %> ago</span><%= i.name %> (in <%=link_to i.building.name, i.building %>, room <%= i.room %>)</li>
 <% end -%>
 </ul>
 
