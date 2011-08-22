@@ -1,6 +1,6 @@
-<% if roomie? -%>
+<% if @roomie -%>
 
-Hey there, <%= roomie.name %>!
+Hey there, <%= @roomie.name %>!
 <%= render 'roomies/show' %>
 
 <% else -%>

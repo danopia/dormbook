@@ -61,7 +61,7 @@ class RoomiesController < ApplicationController
       if !@roomy.save
         format.html { render :action => "new" }
         format.xml  { render :xml => @roomy.errors, :status => :unprocessable_entity }
-      elsif @roomy.created_at == @roomy.updated_at
+      elsif @roomy.created_at > (Time.now - 10.seconds)
         format.html { redirect_to(@roomy, :notice => 'Room assignment was successfully added.') }
         format.xml  { render :xml => @roomy, :status => :created, :location => @roomy }
       else
@@ -70,7 +70,7 @@ class RoomiesController < ApplicationController
       end
     end
     
-    @roomy.update_attributes fb_roomie_info if facebook?
+    @roomy.update_attributes fb_roomie_info if @has_facebook
   end
 
   # PUT /roomies/1

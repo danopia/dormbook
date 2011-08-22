@@ -5,17 +5,6 @@ module ApplicationHelper
     @@cont = cont
   end
   
-  def facebook?
-    @@cont.facebook?
-  end
-  
-  def roomie
-    @@cont.roomie
-  end
-  def roomie?
-    @@cont.roomie != nil
-  end
-  
   def graph param
     @@cont.graph param
   end

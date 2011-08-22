@@ -5,23 +5,15 @@ class ApplicationController < ActionController::Base
   
   def facebook
     ApplicationHelper.controller = self
-    p cookies
     fields = cookies['fbs_164143943660572']
     return unless fields
     
     @fb_fields = Hash[fields[1..-2].scan(/([^&=]+)=([^&=]+)/)]
     p @fb_fields
-  end
-  
-  def facebook?
-    graph('me').size > 0
-  rescue
-    false
-  end
-  
-  def roomie
-    return nil unless facebook?
-    @roomie ||= Roomie.find_by_fb_id graph('me')['id']
+    
+    @has_facebook = (graph('me').size > 0) rescue false
+    @roomie = Roomie.find_by_fb_id graph('me')['id'] if @has_facebook
+    
   end
   
   def graph path='me'
