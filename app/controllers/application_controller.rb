@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def facebook
     ApplicationHelper.controller = self
     p cookies
-    fields = cookies[:fbs_164143943660572]
+    fields = cookies['fbs_164143943660572']
     return unless fields
     
     @fb_fields = Hash[fields[1..-2].scan(/([^&=]+)=([^&=]+)/)]
@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
     require 'json'
     
     @graph ||= {}
+    puts "Opening https://graph.facebook.com/#{path}?access_token=#{CGI.escape @fb_fields['access_token']}"
     @graph[path] ||= JSON(open("https://graph.facebook.com/#{path}?access_token=#{CGI.escape @fb_fields['access_token']}").read)
   end
   
