@@ -13,7 +13,7 @@ module ApplicationHelper
     @@cont.roomie
   end
   def roomie?
-    !!@@cont.roomie
+    @@cont.roomie != nil
   end
   
   def graph param

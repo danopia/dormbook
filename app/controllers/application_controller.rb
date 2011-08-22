@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
     return unless fields
     
     @fb_fields = Hash[fields[1..-2].scan(/([^&=]+)=([^&=]+)/)]
+    p @fb_fields
   end
   
   def facebook?
