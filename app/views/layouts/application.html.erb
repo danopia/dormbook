@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
     <title>Drexel Dormbook</title>
     
@@ -18,8 +18,22 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
+    
+    <script type="text/javascript">
+      window.fbAsyncInit = function() {
+        FB.Event.subscribe('auth.login', function(response) {
+          window.location.reload();
+        });
+        FB.Event.subscribe('auth.logout', function(response) {
+          window.location.reload();
+        });
+      };
+    </script>
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script src="http://connect.facebook.net/en_US/all.js#appId=164143943660572&amp;xfbml=1&amp;cookie=1"></script>
+  
     <div id="page">
       <div id="sidebar">
         <ul id="sidebar-items">
@@ -29,12 +43,16 @@
           <li>
             <h3>View <%=link_to 'buildings', buildings_path %></h3>
             <ul class="links">
-<% Building.all.sort_by(&:name).each do |building| %>
+<% Building.all.sort_by(&:name).each do |building| -%>
               <li><%=link_to building.name, building %></li>
-<% end %>
+<% end -%>
             </ul>
           </li>
         </ul>
+        
+<% if !facebook? -%>
+        <fb:login-button perms="email"></fb:login-button>
+<% end -%>
       </div>
 
       <div id="content">
@@ -55,3 +73,4 @@
     </div>
   </body>
 </html>
+

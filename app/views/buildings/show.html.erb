@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<p style="float: right;"><fb:profile-pic uid="<%= @building.fb_id %>" linked="false" size="normal"></fb:profile-pic></p>
+
 <h2><%= @building.name %></h2>
+
+<p>Facebook group: <a href="http://www.facebook.com/<%= @building.fb_id %>"><fb:name uid="<%= @building.fb_id %>" linked="false"></fb:name></a></p>
 
 <p>Known assignments so far (by floor):</p>
 <ul>

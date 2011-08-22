@@ -1,9 +1,12 @@
 <h1>Buildings</h1>
 
 <table>
-<% @buildings.each do |building| %>
+<% @buildings.sort_by(&:name).each do |building| %>
   <tr>
-    <td><%=link_to building.name, building %></td>
+    <td rowspan="2"><fb:profile-pic uid="<%= building.fb_id %>" linked="false"></fb:profile-pic></td>
+    <td><%=link_to building.name, building %> (<a href="http://www.facebook.com/<%= building.fb_id %>">FB</a>)</td>
+  </tr>
+  <tr>
     <td><%=pluralize building.roomies.all.size, 'people' %> so far</td>
   </tr>
 <% end %>
