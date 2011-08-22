@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   
   def facebook
     ApplicationHelper.controller = self
+    p cookies
     fields = cookies[:fbs_164143943660572]
     return unless fields
     
