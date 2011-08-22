@@ -37,7 +37,8 @@ class Roomie < ActiveRecord::Base
   
   def to_name
     return name unless fb_id
-    "<a href=\"http://www.facebook.com/#{fb_id}\"><fb:profile-pic uid=\"#{fb_id}\" size=\"square\" linked=\"false\"></fb:profile-pic>#{name}</a>".html_safe
+    #"<a href=\"http://www.facebook.com/#{fb_id}\"><fb:profile-pic uid=\"#{fb_id}\" size=\"square\" linked=\"false\"></fb:profile-pic>#{name}</a>".html_safe
+    "<a href=\"http://www.facebook.com/#{fb_id}\">#{name}</a>".html_safe
   end
 end
 
