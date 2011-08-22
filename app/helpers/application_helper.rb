@@ -9,6 +9,13 @@ module ApplicationHelper
     @@cont.facebook?
   end
   
+  def roomie
+    @@cont.roomie
+  end
+  def roomie?
+    !!@@cont.roomie
+  end
+  
   def graph param
     @@cont.graph param
   end

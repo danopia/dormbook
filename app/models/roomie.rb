@@ -1,11 +1,12 @@
 class Roomie < ActiveRecord::Base
 	belongs_to :building
-  has_one :email
+  has_many :emails
 
   validates_presence_of :name, :room, :index
   validates_presence_of :building_id, :message => 'is not known'
   validates_associated :building
   validates_uniqueness_of :name
+  validates_uniqueness_of :fb_id, :email, :allow_nil => true
   validates_uniqueness_of :index, :scope => [:building_id, :room]
   validates_numericality_of :index, :greater_than => 0
 

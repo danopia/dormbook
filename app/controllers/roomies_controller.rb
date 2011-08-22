@@ -52,25 +52,25 @@ class RoomiesController < ApplicationController
   def create
     @roomy = Roomie.new(params[:roomie])
 
-    me = Roomie.first(:conditions => {
+    @roomy = Roomie.first(:conditions => {
       :building_id => @roomy.building_id,
       :room => @roomy.room,
-      :index => @roomy.index})
+      :index => @roomy.index}) || @roomy
 
     respond_to do |format|
-      if me
-        format.html { redirect_to(me) }
-        format.xml  { render :xml => me, :status => :updated, :location => me }
+      if !@roomy.save
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @roomy.errors, :status => :unprocessable_entity }
+      elsif @roomy.created_at == @roomy.updated_at
+        format.html { redirect_to(@roomy, :notice => 'Room assignment was successfully added.') }
+        format.xml  { render :xml => @roomy, :status => :created, :location => @roomy }
       else
-        if @roomy.save
-          format.html { redirect_to(@roomy, :notice => 'Room assignment was successfully added.') }
-          format.xml  { render :xml => @roomy, :status => :created, :location => @roomy }
-        else
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @roomy.errors, :status => :unprocessable_entity }
-        end
+        format.html { redirect_to(@roomy) }
+        format.xml  { render :xml => @roomy, :status => :updated, :location => @roomy }
       end
     end
+    
+    @roomy.update_attributes fb_roomie_info if facebook?
   end
 
   # PUT /roomies/1
@@ -78,15 +78,15 @@ class RoomiesController < ApplicationController
   def update
     #@roomy = Roomie.find(params[:id])
 
-    respond_to do |format|
-      if @roomy.update_attributes(params[:roomy])
-        format.html { redirect_to(@roomy, :notice => 'Roomie was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @roomy.errors, :status => :unprocessable_entity }
-      end
-    end
+    #respond_to do |format|
+    #  if @roomy.update_attributes(params[:roomy])
+    #    format.html { redirect_to(@roomy, :notice => 'Roomie was successfully updated.') }
+    #    format.xml  { head :ok }
+    #  else
+    #    format.html { render :action => "edit" }
+    #    format.xml  { render :xml => @roomy.errors, :status => :unprocessable_entity }
+    #  end
+    #end
   end
 
   # DELETE /roomies/1

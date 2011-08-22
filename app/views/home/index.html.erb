@@ -1,13 +1,9 @@
-<% if facebook? -%>
+<% if roomie? -%>
 
-Hey there, <%= graph('me')['name'] %>!
+Hey there, <%= @roomie.name %>!
+<%= render 'roomies/show' %>
 
 <% else -%>
-
-<h2>Want to find your floormates?</h2>
-<p>Put your name and <a href="http://myhousing.drexel.edu/">MyHousing</a> reservation string below!</p>
-
-<p>Alternatively, forward your official housing email to dormbook@danopia.net, and your roommates will be automaticly listed as well.</p>
 
 <%= render 'roomies/form' %>
 

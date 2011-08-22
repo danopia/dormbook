@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
     false
   end
   
+  def roomie
+    return nil unless facebook?
+    @roomie ||= Roomie.find_by_fb_id graph('me')['id']
+  end
+  
   def graph path='me'
     require 'open-uri'
     require 'json'
