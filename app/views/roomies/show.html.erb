@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h2><%= @roomy.name %></h2>
+<h2><%= @roomy.to_name %></h2>
 
 <% if @others.any? -%>
   <div style="margin: 2em; padding: 0 1em; border: 2px solid #363; background-color: #cfc;">
     <p><strong>Here's your <%=pluralize @others.size, 'roommate' %></strong> so far!</p>
     <ul>
   <% @others.each do |i| -%>
-      <li><%= i.name %></li>
+      <li><%= i.to_name %></li>
   <% end -%>
     </ul>
   </div>
@@ -20,14 +20,14 @@
 <p>You are in <strong>room <%= @roomy.room %> in <%=link_to @roomy.building.name, @roomy.building %></strong>. Here's a few of the <%=pluralize @bldg.size, 'other' %> that I know of in <%= @roomy.building.name %>:</p>
 <ul>
 <% @bldg.last(5).each do |i| -%>
-  <li><%= i.name %> (in <%= i.room %>)</li>
+  <li><%= i.to_name %> (in <%= i.room %>)</li>
 <% end -%>
 </ul>
 
 <p>You are on <strong>floor <%= @roomy.floor %></strong>, along with <%=pluralize @floors.size, 'other' %> so far. Here's all that I know on your floor:</p>
 <ul>
 <% @floors.each do |i| -%>
-  <li><%= i.name %> (in <%= i.room %>)</li>
+  <li><%= i.to_name %> (in <%= i.room %>)</li>
 <% end -%>
 </ul>
 

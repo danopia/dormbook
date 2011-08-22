@@ -1,6 +1,6 @@
 <% if @roomie -%>
 
-<p>Hey there, <%= @roomie.name %>!</p>
+<p>Hey there, <%= @roomie.to_name %>!</p>
 <p>You are in <strong>room <%= @roomie.room %> in <%=link_to @roomie.building.name, @roomie.building %></strong>.</p>
 <p>For more information, hit up your <%=link_to 'private page', @roomie %>.</p>
 
@@ -13,7 +13,7 @@
 <h2>Some recent listings</h2>
 <ul>
 <% @recent.each do |i| -%>
-  <li><span style="float: right; color: gray;"><%=time_ago_in_words i.created_at %> ago</span><%= i.name %> (in <%=link_to i.building.name, i.building %>, room <%= i.room %>)</li>
+  <li><span style="float: right; color: gray;"><%=time_ago_in_words i.created_at %> ago</span><%= i.to_name %> (in <%=link_to i.building.name, i.building %>, room <%= i.room %>)</li>
 <% end -%>
 </ul>
 

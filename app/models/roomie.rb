@@ -34,5 +34,10 @@ class Roomie < ActiveRecord::Base
       :room => self.room,
       :index => self.index})
   end
+  
+  def to_name
+    return name unless fb_id
+    "<a href=\"http://www.facebook.com/#{fb_id}\"><fb:profile-pic uid=\"#{fb_id}\" size=\"thumb\" linked=\"false\"></fb:profile-pic>#{name}</a>".html_safe
+  end
 end
 
