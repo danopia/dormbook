@@ -34,7 +34,8 @@ class RoomiesController < ApplicationController
   # GET /roomies/new
   # GET /roomies/new.xml
   def new
-    @roomy = Roomie.new
+    return redirect_to(@roomie) if @roomie
+    @roomy = Roomie.new(@has_facebook ? fb_roomie_info : {})
 
     respond_to do |format|
       format.html # new.html.erb
