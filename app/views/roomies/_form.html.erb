@@ -3,6 +3,10 @@
 
 <p>Alternatively, forward your housing email to dormbook@danopia.net, and your roommates will be automatically listed as well.</p>
 
+<% if !@has_facebook -%>
+<p>If you have a Facebook, please <fb:login-button perms="email"></fb:login-button> first, to save you effort and to help others find your profile.</p>
+<% end -%>
+
 <%= form_for(@roomy) do |f| %>
   <% if @roomy.errors.any? %>
     <div id="error_explanation">
