@@ -1,5 +1,5 @@
 <h2>Want to find your floormates?</h2>
-<p>Put your<% if !facebook? %> name and<% end %> <a href="http://myhousing.drexel.edu/">MyHousing</a> reservation string below!</p>
+<p>Put your<% if !@has_facebook %> name and<% end %> <a href="http://myhousing.drexel.edu/">MyHousing</a> reservation string below!</p>
 
 <p>Alternatively, forward your housing email to dormbook@danopia.net, and your roommates will be automatically listed as well.</p>
 
@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label :name, 'Full name' %><br />
-    <%= f.text_field :name, :disabled => facebook? %>
+    <%= f.text_field :name, :disabled => @has_facebook %>
   </div>
   <div class="field">
     <%= f.label :raw_string, 'Reservation ID (R##-####-#)' %><br />
