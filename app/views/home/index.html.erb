@@ -1,7 +1,8 @@
 <% if @roomie -%>
 
-Hey there, <%= @roomie.name %>!
-<%= render 'roomies/show' %>
+<p>Hey there, <%= @roomie.name %>!</p>
+<p>You are in <strong>room <%= @roomie.room %> in <%=link_to @roomie.building.name, @roomie.building %></strong>.</p>
+<p>For more information, hit up your <%=link_to 'private page', @roomie %>.</p>
 
 <% else -%>
 
