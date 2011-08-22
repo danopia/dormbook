@@ -1,4 +1,4 @@
-<% p facebook?; if (graph('me') rescue nil) -%>
+<% if facebook? -%>
 
 Hey there, <%= graph('me')['name'] %>!
 

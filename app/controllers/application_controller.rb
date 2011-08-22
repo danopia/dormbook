@@ -18,8 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   def facebook?
-    p 'ASDF', fb_fields['access_token'], graph('me').size
-    return fb_fields['access_token'].try(:'any?') && graph('me').any?
+    graph('me').size > 0
   rescue
     false
   end
