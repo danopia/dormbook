@@ -9,12 +9,6 @@ class ApplicationController < ActionController::Base
     return unless fields
     
     @fb_fields = Hash[fields[1..-2].scan(/([^&=]+)=([^&=]+)/)]
-    
-    
-  end
-  
-  def fb_fields
-    @fb_fields ||= {}
   end
   
   def facebook?
@@ -28,7 +22,7 @@ class ApplicationController < ActionController::Base
     require 'json'
     
     @graph ||= {}
-    @graph[path] ||= JSON(open("https://graph.facebook.com/#{path}?access_token=#{CGI.escape fb_fields['access_token']}").read)
+    @graph[path] ||= JSON(open("https://graph.facebook.com/#{path}?access_token=#{CGI.escape @fb_fields['access_token']}").read)
   end
   
   def fb_roomie_info
