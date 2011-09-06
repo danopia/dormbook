@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  roomie_id: 1
+  term: MyString
+  year: 1
+
+two:
+  roomie_id: 1
+  term: MyString
+  year: 1

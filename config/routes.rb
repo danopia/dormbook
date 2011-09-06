@@ -1,13 +1,18 @@
 Roommates::Application.routes.draw do
-  resources :zebras
+  resources :sessions do
+    resources :zebras
+  end
 
-  resources :sessions
-
-  resources :courses
+  resources :courses do
+    resources :sessions
+  end
 
   resources :emails
 
-  resources :roomies
+  resources :roomies do
+    resource :schedule
+  end
+  
   resources :buildings
 
   # The priority is based upon order of creation:
