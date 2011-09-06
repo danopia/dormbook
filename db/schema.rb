@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 4) do
+ActiveRecord::Schema.define(:version => 7) do
 
   create_table "buildings", :force => true do |t|
     t.string    "name"
@@ -18,6 +18,17 @@ ActiveRecord::Schema.define(:version => 4) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.string    "fb_id"
+  end
+
+  create_table "courses", :force => true do |t|
+    t.string   "title",                     :null => false
+    t.string   "category",                  :null => false
+    t.string   "level",                     :null => false
+    t.string   "section",                   :null => false
+    t.string   "crn",                       :null => false
+    t.integer  "credits",    :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "emails", :force => true do |t|
@@ -41,6 +52,25 @@ ActiveRecord::Schema.define(:version => 4) do
     t.string    "gender"
     t.string    "fb_id"
     t.string    "email"
+  end
+
+  create_table "sessions", :force => true do |t|
+    t.integer  "course_id",  :null => false
+    t.time     "starts_at",  :null => false
+    t.time     "ends_at",    :null => false
+    t.string   "days",       :null => false
+    t.string   "location",   :null => false
+    t.string   "instructor"
+    t.string   "type",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "zebras", :force => true do |t|
+    t.integer  "roomie_id",  :null => false
+    t.integer  "session_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

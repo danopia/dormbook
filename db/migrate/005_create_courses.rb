@@ -6,7 +6,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :level, :null => false
       t.string :section, :null => false
       t.string :crn, :null => false
-      t.number :credits, :null => false, :default => 0
+      t.integer :credits, :null => false, :default => 0
 
       t.timestamps
     end
