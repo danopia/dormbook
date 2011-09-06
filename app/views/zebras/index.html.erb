@@ -1,0 +1,25 @@
+<h1>Listing zebras</h1>
+
+<table>
+  <tr>
+    <th>Roomie</th>
+    <th>Session</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @zebras.each do |zebra| %>
+  <tr>
+    <td><%= zebra.roomie_id %></td>
+    <td><%= zebra.session_id %></td>
+    <td><%= link_to 'Show', zebra %></td>
+    <td><%= link_to 'Edit', edit_zebra_path(zebra) %></td>
+    <td><%= link_to 'Destroy', zebra, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Zebra', new_zebra_path %>

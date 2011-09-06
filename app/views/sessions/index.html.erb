@@ -1,0 +1,35 @@
+<h1>Listing sessions</h1>
+
+<table>
+  <tr>
+    <th>Course</th>
+    <th>Starts at</th>
+    <th>Ends at</th>
+    <th>Days</th>
+    <th>Location</th>
+    <th>Instructor</th>
+    <th>Type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sessions.each do |session| %>
+  <tr>
+    <td><%= session.course_id %></td>
+    <td><%= session.starts_at %></td>
+    <td><%= session.ends_at %></td>
+    <td><%= session.days %></td>
+    <td><%= session.location %></td>
+    <td><%= session.instructor %></td>
+    <td><%= session.type %></td>
+    <td><%= link_to 'Show', session %></td>
+    <td><%= link_to 'Edit', edit_session_path(session) %></td>
+    <td><%= link_to 'Destroy', session, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Session', new_session_path %>

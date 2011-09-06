@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Course:</b>
+  <%= @session.course_id %>
+</p>
+
+<p>
+  <b>Starts at:</b>
+  <%= @session.starts_at %>
+</p>
+
+<p>
+  <b>Ends at:</b>
+  <%= @session.ends_at %>
+</p>
+
+<p>
+  <b>Days:</b>
+  <%= @session.days %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @session.location %>
+</p>
+
+<p>
+  <b>Instructor:</b>
+  <%= @session.instructor %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @session.type %>
+</p>
+
+
+<%= link_to 'Edit', edit_session_path(@session) %> |
+<%= link_to 'Back', sessions_path %>

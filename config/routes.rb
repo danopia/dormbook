@@ -1,4 +1,10 @@
 Roommates::Application.routes.draw do
+  resources :zebras
+
+  resources :sessions
+
+  resources :courses
+
   resources :emails
 
   resources :roomies

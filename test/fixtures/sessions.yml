@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  course_id: 1
+  starts_at: 2011-09-06 00:12:48
+  ends_at: 2011-09-06 00:12:48
+  days: MyString
+  location: MyString
+  instructor: MyString
+  type: MyString
+
+two:
+  course_id: 1
+  starts_at: 2011-09-06 00:12:48
+  ends_at: 2011-09-06 00:12:48
+  days: MyString
+  location: MyString
+  instructor: MyString
+  type: MyString

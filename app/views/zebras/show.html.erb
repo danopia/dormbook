@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Roomie:</b>
+  <%= @zebra.roomie_id %>
+</p>
+
+<p>
+  <b>Session:</b>
+  <%= @zebra.session_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_zebra_path(@zebra) %> |
+<%= link_to 'Back', zebras_path %>
