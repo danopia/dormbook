@@ -7,9 +7,7 @@ class Course < ActiveRecord::Base
       :title => stuff.shift,
       :category => stuff.shift,
       :level => stuff.shift,
-      :section => stuff.shift,
-      :crn => stuff.shift.to_i,
-      :credits => stuff.shift.to_f}
+      :section => stuff.shift}
     
     s = Course.first :conditions => data
     s ||= Course.create data
