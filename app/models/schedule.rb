@@ -8,7 +8,7 @@ class Schedule < ActiveRecord::Base
     @raw_string = raw
     p raw
     
-    self.term, self.year = raw.match(/^(Fall|Spring|Summer|Winter) (?:Quarter|Term) ([0-9]{2})-[0-9]{2}\r$/).to_a
+    trash, self.term, self.year = raw.match(/^(Fall|Spring|Summer|Winter) (?:Quarter|Term) ([0-9]{2})-[0-9]{2}\r$/).to_a
     
     raw = raw.scan(/(.+) - ([A-Z]+) (.+) - (.+)(?:\r\n| Assoc).+\r\nCRN: ?\t([0-9]+)\r\n.+\r\n.+\r\n.+\r\nCredits: ?\t ?([0-9.]+)\r\n.+\r\n.+\r\n.+\r\n(?:.+\r\n)?Class ?\t([0-9: apm]+) - ([0-9: apm]+) ?\t([MTWRF]+) ?\t([^\t]+) ?\t[^\t]+ ?\t([^\t]+) ?\t([^\t\r\n]+)/)
     
