@@ -14,11 +14,11 @@ class Session < ActiveRecord::Base
     # ["2:00 pm", "2:50 pm", "F", "Bossone Research Entr. Center AUD", "Lecture", "Kelly L. Vass (P), Terri A. Baker "]
     data = {
       :course_id => c.id,
-      :starts_at => Time.parse("2000-01-01 #{stuff.shift} UTC"),
-      :ends_at => Time.parse("2000-01-01 #{stuff.shift} UTC"),
-      :days => stuff.shift,
-      :location => stuff.shift,
-      :_type => stuff.shift}
+      :starts_at => Time.parse("2000-01-01 #{stuff.shift.strip} UTC"),
+      :ends_at => Time.parse("2000-01-01 #{stuff.shift.strip} UTC"),
+      :days => stuff.shift.strip,
+      :location => stuff.shift.strip,
+      :_type => stuff.shift.strip}
     
     s = Session.first :conditions => data
     s ||= Session.create data
