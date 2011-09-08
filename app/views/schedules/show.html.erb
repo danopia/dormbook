@@ -1,5 +1,5 @@
 <% content_for :title, "#{@schedule.roomie.name}, #{@schedule.term} '#{@schedule.year}" %>
-<h1><%= @schedule.roomie.name %></h1>
+<h1><%= @schedule.roomie.to_name %></h1>
 <h2><%= @schedule.term %> '<%= @schedule.year %></h2>
 
 <% @sessions.each do |s| -%>
