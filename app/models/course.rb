@@ -10,6 +10,10 @@ class Course < ActiveRecord::Base
       :section => stuff.shift}
     
     s = Course.first :conditions => data
+    
+    data[:crn] = stuff.shift.to_i
+    data[:credits] = stuff.shift.to_f
+    
     s ||= Course.create data
     s
   end
