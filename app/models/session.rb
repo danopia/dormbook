@@ -35,7 +35,7 @@ class Session < ActiveRecord::Base
     a << 'Mondays' if d.include? 'M'
     a << 'Tuesdays' if d.include? 'T'
     a << 'Wednesdays' if d.include? 'W'
-    a << 'Thursdays' if d.include? 'H'
+    a << 'Thursdays' if d.include? 'R'
     a << 'Fridays' if d.include? 'F'
     
     return a.first if a.size == 1
