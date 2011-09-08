@@ -3,7 +3,7 @@
 <h2><%= @schedule.term %> '<%= @schedule.year %></h2>
 
 <% @sessions.each do |s| -%>
-  <h4><%=link_to s.course.title, s.course %></h4>
+  <h4><%=link_to s.course.title, s.course %> <%= s._type %> (<%= s.zebras.all.size %>)</h4>
   <p><%= s.days_s %> at <%= s.starts_at.strftime '%l:%M %p' %></p>
 <% end -%>
 
