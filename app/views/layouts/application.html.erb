@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
-    <title>Drexel Dormbook</title>
+    <title><% yield :title %> - Drexel Dormbook</title>
     
     <%= stylesheet_link_tag 'application' %>
     <%#= javascript_include_tag :defaults %>
@@ -29,6 +29,8 @@
         });
       };
     </script>
+    
+    <% yield :head %>
   </head>
   <body>
     <div id="fb-root"></div>
@@ -62,6 +64,8 @@
         </div>
 
         <div id="getting-started">
+          <p id="notice"><%= notice %></p>
+
 <%= yield %>
         </div>
       </div>
