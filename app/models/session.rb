@@ -9,7 +9,7 @@ class Session < ActiveRecord::Base
     c = Course.find_or_create stuff.shift(6)
     
     # ["2:00 pm", "2:50 pm", "F", "Bossone Research Entr. Center AUD", "Lecture", "Kelly L. Vass (P), Terri A. Baker "]
-    p = Professor.find_or_create stuff.last.strip.sub(' (P)', '') if stuff.last != 'TBA'
+    p = Professor.find_or_create stuff.last.sub('(P)', '').sub('E-mail', '').strip if stuff.last != 'TBA'
     
     # ["2:00 pm", "2:50 pm", "F", "Bossone Research Entr. Center AUD", "Lecture", "Kelly L. Vass (P), Terri A. Baker "]
     data = {
