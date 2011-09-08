@@ -1,4 +1,4 @@
-<%= form_for(@schedule) do |f| %>
+<%= form_for([@roomie, @schedule]) do |f| %>
   <% if @schedule.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
@@ -12,16 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :roomie_id %><br />
-    <%= f.text_field :roomie_id %>
-  </div>
-  <div class="field">
-    <%= f.label :term %><br />
-    <%= f.text_field :term %>
-  </div>
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.text_field :year %>
+    <%= f.label :raw_string %><br />
+    <%= f.text_area :raw_string %>
   </div>
   <div class="actions">
     <%= f.submit %>

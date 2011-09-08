@@ -1,35 +1,20 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @course.title %></h2>
+<h3><%= @course.category %> <%= @course.level %>-<%= @course.section %></h3>
 
 <p>
-  <b>Title:</b>
-  <%= @course.title %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%= @course.category %>
-</p>
-
-<p>
-  <b>Level:</b>
-  <%= @course.level %>
-</p>
-
-<p>
-  <b>Section:</b>
-  <%= @course.section %>
-</p>
-
-<p>
-  <b>Crn:</b>
+  <b>CRN:</b>
   <%= @course.crn %>
 </p>
 
 <p>
-  <b>Credits:</b>
-  <%= @course.credits %>
+  <b><%= @course.credits %></b>
+  credits
 </p>
 
+<p>Known students:</p>
+<ul>
+<% @course.sessions.map(&:schedules).flatten.each do |s| -%>
+  <li><%=link_to s.roomie.name, s %></li>
+<% end -%>
+</ul>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>

@@ -13,7 +13,8 @@ class SchedulesController < ApplicationController
   # GET /schedules/1
   # GET /schedules/1.xml
   def show
-    @schedule = Schedule.find(params[:id])
+    @schedule = Schedule.find params[:id]
+    @sessions = @schedule.sessions.all(:include => [:professor, :course])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,8 @@ class SchedulesController < ApplicationController
   # GET /schedules/new
   # GET /schedules/new.xml
   def new
-    @schedule = Schedule.new
+    @roomie = Roomie.find params[:roomy_id]
+    @schedule = @roomie.schedules.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,7 +42,8 @@ class SchedulesController < ApplicationController
   # POST /schedules
   # POST /schedules.xml
   def create
-    @schedule = Schedule.new(params[:schedule])
+    @roomie = Roomie.find params[:roomy_id]
+    @schedule = @roomie.schedules.new params[:schedule]
 
     respond_to do |format|
       if @schedule.save

@@ -1,6 +1,11 @@
 Roommates::Application.routes.draw do
+  resources :professors
+
+  resources :schedules
+  
   resources :sessions do
     resources :zebras
+    resource :professor
   end
 
   resources :courses do
@@ -10,7 +15,7 @@ Roommates::Application.routes.draw do
   resources :emails
 
   resources :roomies do
-    resource :schedule
+    resources :schedules
   end
   
   resources :buildings

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 6) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "buildings", :force => true do |t|
     t.string    "name"
@@ -42,6 +42,12 @@ ActiveRecord::Schema.define(:version => 6) do
     t.timestamp "updated_at"
   end
 
+  create_table "professors", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roomies", :force => true do |t|
     t.string    "name"
     t.integer   "building_id"
@@ -54,14 +60,29 @@ ActiveRecord::Schema.define(:version => 6) do
     t.string    "email"
   end
 
+  create_table "schedules", :force => true do |t|
+    t.integer  "roomie_id",  :null => false
+    t.string   "term",       :null => false
+    t.integer  "year",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sessions", :force => true do |t|
-    t.integer  "course_id",  :null => false
-    t.time     "starts_at",  :null => false
-    t.time     "ends_at",    :null => false
-    t.string   "days",       :null => false
-    t.string   "location",   :null => false
-    t.string   "instructor"
-    t.string   "type",       :null => false
+    t.integer  "course_id",    :null => false
+    t.time     "starts_at",    :null => false
+    t.time     "ends_at",      :null => false
+    t.string   "days",         :null => false
+    t.string   "location",     :null => false
+    t.integer  "professor_id"
+    t.string   "_type",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "zebras", :force => true do |t|
+    t.integer  "schedule_id", :null => false
+    t.integer  "session_id",  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

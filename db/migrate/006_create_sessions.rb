@@ -6,8 +6,8 @@ class CreateSessions < ActiveRecord::Migration
       t.time :ends_at, :null => false
       t.string :days, :null => false
       t.string :location, :null => false
-      t.string :instructor
-      t.string :type, :null => false
+      t.integer :professor_id
+      t.string :_type, :null => false
 
       t.timestamps
     end

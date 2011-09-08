@@ -1,6 +1,7 @@
 class Roomie < ActiveRecord::Base
 	belongs_to :building
   has_many :emails
+  has_many :schedules
 
   validates_presence_of :name, :room, :index
   validates_presence_of :building_id, :message => 'is not known'

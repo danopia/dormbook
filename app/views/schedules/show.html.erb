@@ -1,20 +1,9 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @schedule.roomie.name %></h1>
 
-<p>
-  <b>Roomie:</b>
-  <%= @schedule.roomie_id %>
-</p>
+<h2><%= @schedule.term %> '<%= @schedule.year %></h2>
 
-<p>
-  <b>Term:</b>
-  <%= @schedule.term %>
-</p>
+<% @sessions.each do |s| -%>
+  <h4><%=link_to s.course.title, s.course %></h4>
+  <p><%= s.days_s %> at <%= s.starts_at.strftime '%l:%M %p' %></p>
+<% end -%>
 
-<p>
-  <b>Year:</b>
-  <%= @schedule.year %>
-</p>
-
-
-<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
-<%= link_to 'Back', schedules_path %>
