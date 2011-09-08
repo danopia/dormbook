@@ -11,10 +11,13 @@
   credits
 </p>
 
+<% @course.sessions.each do |sess| -%>
+<h3><%= sess.days_s %> at <%= sess.starts_at.strftime '%l:%M %p' %></h3>
 <p>Known students:</p>
 <ul>
-<% @course.sessions.map(&:schedules).flatten.each do |s| -%>
+<% sess.schedules.each do |s| -%>
   <li><%=link_to s.roomie.name, s %></li>
 <% end -%>
 </ul>
+<% end -%>
 

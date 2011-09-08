@@ -14,8 +14,8 @@ class Session < ActiveRecord::Base
     # ["2:00 pm", "2:50 pm", "F", "Bossone Research Entr. Center AUD", "Lecture", "Kelly L. Vass (P), Terri A. Baker "]
     data = {
       :course_id => c.id,
-      :starts_at => stuff.shift,
-      :ends_at => stuff.shift,
+      :starts_at => Time.parse("2000-01-01 #{stuff.shift}"),
+      :ends_at => Time.parse("2000-01-01 #{stuff.shift}"),
       :days => stuff.shift,
       :location => stuff.shift,
       :_type => stuff.shift}
@@ -38,7 +38,7 @@ class Session < ActiveRecord::Base
     a << 'Thursdays' if d.include? 'H'
     a << 'Fridays' if d.include? 'F'
     
-    return a if a.size == 1
+    return a.first if a.size == 1
     
     b, c = a.pop(2)
     a << "#{b} and #{c}"
